@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+// In the real use cases:
+// We use this kind of repository to query the complex data from database
 @Repository
 public class EmployeeRepository {
     @PersistenceContext

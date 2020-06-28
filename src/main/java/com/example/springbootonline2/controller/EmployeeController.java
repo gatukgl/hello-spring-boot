@@ -44,6 +44,11 @@ public class EmployeeController {
         return employeeService.queryByLastName(lastName);
     }
 
+    @GetMapping("/query2")
+    public List<Employee> findByFirstName(@RequestParam(required = false) String firstName) {
+        return employeeService.queryByFirstName(firstName);
+    }
+
     @GetMapping("/nativeQuery")
     public List<EmployeeResponse> queryByNativeQuery() {
         return employeeService.queryByNativeQuery();
