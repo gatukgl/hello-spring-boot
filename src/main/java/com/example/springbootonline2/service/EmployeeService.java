@@ -1,7 +1,7 @@
 package com.example.springbootonline2.service;
 
 import com.example.springbootonline2.domain.Employee;
-import com.example.springbootonline2.domain.EmployeeResponse;
+import com.example.springbootonline2.response.EmployeeResponse;
 import com.example.springbootonline2.exception.UnprocessableException;
 import com.example.springbootonline2.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

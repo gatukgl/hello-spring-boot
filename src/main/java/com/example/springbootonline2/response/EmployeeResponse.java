@@ -1,4 +1,4 @@
-package com.example.springbootonline2.domain;
+package com.example.springbootonline2.response;
 
 import lombok.Data;
 
