@@ -1,6 +1,7 @@
 package com.example.springbootonline2.service;
 
 import com.example.springbootonline2.domain.Employee;
+import com.example.springbootonline2.exception.UnprocessableException;
 import com.example.springbootonline2.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,11 @@ public class EmployeeService {
     }
 
     public Employee findById(Integer id) {
-        return employeeRepository.findById(id);
+        Employee employeeEntity = employeeRepository.findById(id);
+        if (employeeEntity == null) {
+            throw new UnprocessableException("Employee not found: " + id);
+        }
+        return employeeEntity;
     }
 
     @Transactional
@@ -29,9 +34,6 @@ public class EmployeeService {
     @Transactional
     public void update(Integer id, Employee employee) {
         Employee employeeEntity = findById(id);
-        if (employeeEntity == null) {
-            throw new RuntimeException("Employee not found!");
-        }
 
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setLastName(employee.getLastName());
@@ -41,9 +43,6 @@ public class EmployeeService {
     @Transactional
     public void delete(Integer id) {
         Employee employeeEntity = findById(id);
-        if (employeeEntity == null) {
-            throw new RuntimeException("Employee not found!");
-        }
 
         employeeRepository.delete(employeeEntity);
     }

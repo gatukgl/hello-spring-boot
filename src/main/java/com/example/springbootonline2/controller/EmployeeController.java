@@ -43,7 +43,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/query")
-    public List<Employee> findByLastName(@RequestParam String lastName) {
+    public List<Employee> findByLastName(@RequestParam(required = false) String lastName) {
         return employeeService.queryByLastName(lastName);
     }
 }
