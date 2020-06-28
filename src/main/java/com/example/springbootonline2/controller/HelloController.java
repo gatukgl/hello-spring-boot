@@ -37,4 +37,10 @@ public class HelloController {
     public void postMessage(@RequestBody MessageInfo messageInfo) {
         System.out.println("Message: " + messageInfo.getMessage());
     }
+
+    @RequestMapping(value = "/hello/{id}", method = RequestMethod.PUT)
+    public void putMessage(@PathVariable String id, @RequestBody MessageInfo messageInfo) {
+        System.out.println("id: " + id);
+        System.out.println("messageInfo: " + messageInfo.getMessage());
+    }
 }
