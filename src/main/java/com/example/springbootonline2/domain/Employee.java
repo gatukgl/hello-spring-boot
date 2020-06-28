@@ -1,11 +1,14 @@
 package com.example.springbootonline2.domain;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Data
 @Table(name = "EMPLOYEE")
 public class Employee {
     @Id
