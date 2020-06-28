@@ -1,6 +1,7 @@
 package com.example.springbootonline2.service;
 
 import com.example.springbootonline2.domain.Employee;
+import com.example.springbootonline2.repository.EmployeeJPARepository;
 import com.example.springbootonline2.response.EmployeeResponse;
 import com.example.springbootonline2.exception.UnprocessableException;
 import com.example.springbootonline2.repository.EmployeeRepository;
@@ -15,8 +16,11 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private EmployeeJPARepository jpaRepository;
+
     public List<Employee> listAll() {
-        return employeeRepository.listAll();
+        return jpaRepository.findAll();
     }
 
     public Employee findById(Integer id) {
