@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class EmployeeRepository {
@@ -15,5 +16,9 @@ public class EmployeeRepository {
     @Transactional
     public void save(Employee employee) {
         entityManager.persist(employee);
+    }
+
+    public List<Employee> listAll() {
+        return entityManager.createQuery("from Employee").getResultList();
     }
 }
