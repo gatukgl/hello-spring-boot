@@ -24,16 +24,17 @@ public class EmployeeService {
     }
 
     public Employee findById(Integer id) {
-        Employee employeeEntity = employeeRepository.findById(id);
-        if (employeeEntity == null) {
-            throw new UnprocessableException("Employee not found: " + id);
-        }
+        Employee employeeEntity = jpaRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new UnprocessableException("Employee not found! ID: " + id)
+                );
         return employeeEntity;
     }
 
     @Transactional
     public void save(Employee employee) {
-        employeeRepository.save(employee);
+        jpaRepository.save(employee);
     }
 
     @Transactional
@@ -42,14 +43,13 @@ public class EmployeeService {
 
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setLastName(employee.getLastName());
-        employeeRepository.save(employeeEntity);
+        jpaRepository.save(employeeEntity);
     }
 
     @Transactional
     public void delete(Integer id) {
         Employee employeeEntity = findById(id);
-
-        employeeRepository.delete(employeeEntity);
+        jpaRepository.delete(employeeEntity);
     }
 
     public List<Employee> queryByLastName(String lastName) {
